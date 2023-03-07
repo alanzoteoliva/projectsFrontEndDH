@@ -35,16 +35,25 @@ cambiarTema.addEventListener("click", alternarColorTema);
 
 function obtenerDatosDelUsuario() {
   /* --------------- PUNTO 1: Escribe tu codigo a partir de aqui --------------- */
- 
-
-
+    datosPersona.nombre = prompt("Ingrese el nombre");
+    let naciste = parseInt( prompt("En que año naciste"));
+    while(naciste > 2023 || naciste< 1900) {
+      naciste = parseInt(prompt("Año erroneo, por favor ingresa uno correcto"));
+    }
+    datosPersona.edad = 2023 - naciste;
+    datosPersona.ciudad = prompt("Ingresa el nombre de tu ciudad");
+    datosPersona.interesPorJs = confirm("Te gusta JavaScript?");
+    
 }
 
 function renderizarDatosUsuario() {
   /* ------------------- NO TOCAR NI ELIMINAR ESTA FUNCION. ------------------- */
   obtenerDatosDelUsuario();
   /* --------------- PUNTO 2: Escribe tu codigo a partir de aqui --------------- */
-  
+    let campoNombre = document.querySelector("#nombre")
+    let campoEdad = document.querySelector("#edad")
+    let campoCiudad = document.querySelector("#ciudad")
+    let gustaJavaScript = document.querySelector("#javascript")
 
 
 }
