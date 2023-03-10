@@ -1,3 +1,4 @@
+const img = 'https://cdn1.vectorstock.com/i/thumb-large/22/50/developer-line-icon-outline-vector-30762250.jpg'
 /* --------------------------- NO TOCAR DESDE ACÁ --------------------------- */
 let datosPersona = {
   nombre: "",
@@ -35,44 +36,69 @@ cambiarTema.addEventListener("click", alternarColorTema);
 
 function obtenerDatosDelUsuario() {
   /* --------------- PUNTO 1: Escribe tu codigo a partir de aqui --------------- */
-    datosPersona.nombre = prompt("Ingrese el nombre");
-    let naciste = parseInt( prompt("En que año naciste"));
-    while(naciste > 2023 || naciste< 1900) {
-      naciste = parseInt(prompt("Año erroneo, por favor ingresa uno correcto"));
+    datosPersona.nombre = prompt("Ingrese su nombre");
+    const anioNacimiento = parseInt( prompt("Ingrese su año de nacimiento"));
+
+      while(anioNacimiento > 2023 || anioNacimiento< 1900) {
+        anioNacimiento = parseInt(prompt("Año inválido, ingresa nuevamente"));
     }
-    datosPersona.edad = 2023 - naciste;
-    datosPersona.ciudad = prompt("Ingresa el nombre de tu ciudad");
-    datosPersona.interesPorJs = confirm("Te gusta JavaScript?");
+
+    datosPersona.edad = 2023 - anioNacimiento;
+    datosPersona.ciudad = prompt("Ingrese nombre de su ciudad");
+    datosPersona.interesPorJs = confirm("¿Está interesado en JavaScript?");
     
 }
+console.log(datosPersona);
 
 function renderizarDatosUsuario() {
   /* ------------------- NO TOCAR NI ELIMINAR ESTA FUNCION. ------------------- */
   obtenerDatosDelUsuario();
   /* --------------- PUNTO 2: Escribe tu codigo a partir de aqui --------------- */
-    let campoNombre = document.querySelector("#nombre")
-    let campoEdad = document.querySelector("#edad")
-    let campoCiudad = document.querySelector("#ciudad")
-    let gustaJavaScript = document.querySelector("#javascript")
+    const nombre = document.querySelector("#nombre");
+    const edad = document.querySelector("#edad");
+    const ciudad = document.querySelector("#ciudad");
+    const interesPorJs = document.querySelector("#javascript");
 
-
+    nombre.innerText = datosPersona.nombre;
+    edad.innerText = datosPersona.edad;
+    ciudad.innerText = datosPersona.ciudad;
+    interesPorJs.innerText = datosPersona.interesPorJs;
+      if (datosPersona.interesPorJs == true){
+        interesPorJs.innerText = "Si";
+      } else {
+        interesPorJs.innerText = "No";
+      } 
 }
 
 
 function recorrerListadoYRenderizarTarjetas() {
   /* ------------------ PUNTO 3: Escribe tu codigo desde aqui ------------------ */
-  
 
-
+  const tarjeta = document.querySelector("#fila");
+  tarjeta.innerHTML = '';
+  listado.forEach(e => {
+    tarjeta.innerHTML += 
+                      `<li class = "caja">
+                          <img src = "${e.imgUrl}" alt="${e.lenguajes}">
+                          <p class = "lenguajes"> ${e.lenguajes}</p>
+                          <p class = "bimestre"> ${e.bimestre}</p>
+                      </li>`
+})
 }
 
 function alternarColorTema() {
   /* --------------------- PUNTO 4: Escribe tu codigo aqui --------------------- */
- 
-  
-
-
+  const temas = document.querySelector("#sitio");
+  temas.classList.toggle("dark")
 }
 
 /* --------------------- PUNTO 5: Escribe tu codigo aqui --------------------- */
 
+window.addEventListener("keydown", texto);
+function texto (e){
+  const sobreMi = document.querySelector("#sobre-mi");
+  const tecla = e.key.toLowerCase();
+  if (tecla == 'f'){
+    sobreMi.removeAttribute('class', 'oculto')
+  }
+}
